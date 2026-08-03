@@ -5,6 +5,7 @@ if [ ! -f /var/www/html/bin/phpbbcli.php ]; then
   rm -rf /var/www/html/*
   cp -a /opt/phpbb/. /var/www/html/
 fi
+printf 'ok\n' >/var/www/html/healthz.txt
 chown -R www-data:www-data /var/www/html
 if [ ! -s /var/www/html/config.php ]; then
   cat >/tmp/phpbb-install.yml <<EOF
