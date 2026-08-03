@@ -1,5 +1,7 @@
 # phpBB on Railway
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/phpbb?referralCode=ZqgrJ0)
+
 Deploy phpBB 3.3.17 with a generated administrator password, private MariaDB, persistent forum files, and daily backups.
 
 Sign in as `admin` with `PHPBB_ADMIN_PASSWORD`. The template disables email until SMTP is configured and removes the installer directory after setup. Use one application replica because phpBB files use an attached volume.
