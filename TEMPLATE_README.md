@@ -2,7 +2,7 @@
 
 ## About Hosting phpBB
 
-phpBB is an open-source discussion board with forums, topics, moderation, permissions, private messages, themes, and extensions. This template deploys stable 3.3.17 with generated credentials and private MariaDB.
+phpBB is an open-source discussion board with forums, topics, moderation, permissions, private messages, themes, and extensions. This template deploys stable 3.3.19 with generated credentials and private MariaDB.
 
 Sign in as `admin` with `PHPBB_ADMIN_PASSWORD`.
 
