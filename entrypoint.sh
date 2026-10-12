@@ -44,7 +44,19 @@ installer:
   extensions: []
 EOF
   cd /var/www/html
+  # The installer prints a refused connection and still exits 0, so wait for the database first
+  # and treat an empty config.php as a failed installation.
+  for _ in $(seq 1 90); do
+    php -r 'exit(@fsockopen(getenv("PHPBB_DB_HOST"), (int) (getenv("PHPBB_DB_PORT") ?: 3306), $e, $m, 2) ? 0 : 1);' && break
+    sleep 2
+  done
+  # A previous start may have hidden the installer after such a silent failure.
+  if [ ! -d install ] && [ -d .install ]; then mv .install install; fi
   runuser -u www-data -- php install/phpbbcli.php install /tmp/phpbb-install.yml
+  if [ ! -s config.php ]; then
+    echo "phpBB installation did not complete; the next start will retry" >&2
+    exit 1
+  fi
 fi
 [ ! -d /var/www/html/install ] || mv /var/www/html/install /var/www/html/.install
 sed -ri 's/Listen 80/Listen 8080/' /etc/apache2/ports.conf
