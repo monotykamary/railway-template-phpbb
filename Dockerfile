@@ -1,4 +1,4 @@
-FROM docker.io/library/php:8.3.33-apache-bookworm@sha256:8d61f31653ce5550d10d012dce005ecfc24cbdbe7108d19f35242fb0ecb2ff22 AS build
+FROM docker.io/library/php:8.3.35-apache-bookworm@sha256:b79a53c3fb1dd4b9f350a8d99d84951512b6c21044e61bbecfee8af030b3722e AS build
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl unzip libicu-dev libjpeg62-turbo-dev libpng-dev libfreetype6-dev libzip-dev libonig-dev && rm -rf /var/lib/apt/lists/* \
  && docker-php-ext-configure gd --with-freetype --with-jpeg \
  && docker-php-ext-install -j2 mysqli intl gd zip mbstring
